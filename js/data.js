@@ -63,7 +63,7 @@ const DATA = {
         tags: ['React', 'Tailwind', 'Animation'],
         title: 'Portfolio & Landing Pages',
         desc: 'Multiple landing pages and personal portfolios built — fast, responsive, and pixel-perfect from Figma to code.',
-        link: 'https://jun-portfolio-sepia.vercel.app/', // ✏️ Replace with your GitHub / live link
+        link: 'jun-portfolio-xi.vercel.app/', // ✏️ Replace with your GitHub / live link
       },
     ],
   },
