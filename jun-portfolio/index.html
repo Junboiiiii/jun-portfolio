@@ -1,0 +1,383 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Tay Jun Long — Portfolio</title>
+<meta name="description" content="Tay Jun Long — Frontend Developer & AI Engineer. Fresh CS graduate from Asia Pacific University (APU), Malaysia.">
+<meta name="author" content="Tay Jun Long">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@300;400;500&family=Syne:wght@400;600;700;800&family=Instrument+Serif:ital@0;1&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body class="fe">
+
+<!-- Custom cursor -->
+<div id="cur"></div>
+<div id="ring"></div>
+
+<!-- ══════════════════════════════════════
+     PROFILE SWITCHER
+══════════════════════════════════════ -->
+<div id="switcher">
+  <button class="sw-btn" id="sw-fe" onclick="switchTo('fe')">⚡ Frontend Dev</button>
+  <div class="sw-divider"></div>
+  <button class="sw-btn" id="sw-ai" onclick="switchTo('ai')">🤖 AI Engineer</button>
+</div>
+
+<!-- ══════════════════════════════════════
+     NAVIGATION
+══════════════════════════════════════ -->
+<nav>
+  <div class="logo" id="nav-logo">JUN.</div>
+  <ul class="nav-links">
+    <li><a href="#about">about</a></li>
+    <li><a href="#skills">skills</a></li>
+    <li><a href="#experience">journey</a></li>
+    <li><a href="#projects">projects</a></li>
+    <li><a href="#contact">contact</a></li>
+  </ul>
+  <!-- Mobile hamburger -->
+  <button class="hamburger" id="hamburger" aria-label="Menu">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+<!-- Mobile nav drawer -->
+<div class="mobile-nav" id="mobile-nav">
+  <ul>
+    <li><a href="#about" onclick="closeMobileNav()">about</a></li>
+    <li><a href="#skills" onclick="closeMobileNav()">skills</a></li>
+    <li><a href="#experience" onclick="closeMobileNav()">journey</a></li>
+    <li><a href="#projects" onclick="closeMobileNav()">projects</a></li>
+    <li><a href="#contact" onclick="closeMobileNav()">contact</a></li>
+  </ul>
+</div>
+
+<!-- ══════════════════════════════════════
+     HERO SECTION
+══════════════════════════════════════ -->
+<section id="hero">
+
+  <!-- FRONTEND HERO -->
+  <div class="container" id="fe-hero">
+    <div class="fe-blob1 fe-hero-blob"></div>
+    <div class="fe-blob2 fe-hero-blob"></div>
+    <div class="fe-blob3 fe-hero-blob"></div>
+    <div class="fe-hero-inner">
+      <div>
+        <div class="fe-eyebrow">Frontend / UI Developer · Fresh Grad</div>
+        <h1 class="fe-name">Tay<br><em>Jun Long</em></h1>
+        <p class="fe-role">Crafting interfaces that feel alive &amp; beautiful</p>
+        <p class="fe-desc">
+          Hey, I'm Jun — a fresh CS graduate from Asia Pacific University (APU) who obsesses over
+          clean UI, smooth animations, and turning Figma designs into living, breathing code.
+          Based in Malaysia, building for the web.
+        </p>
+        <div class="fe-cta">
+          <button class="fe-btn" onclick="document.getElementById('projects').scrollIntoView({behavior:'smooth'})">
+            See My Work
+          </button>
+          <button class="fe-btn2" onclick="document.getElementById('contact').scrollIntoView({behavior:'smooth'})">
+            Hire Me
+          </button>
+        </div>
+      </div>
+      <div class="fe-visual">
+        <div class="fo1 fe-orb"></div>
+        <div class="fo2 fe-orb"></div>
+        <div class="fe-card fe-card1">
+          <div class="fc-lbl">Status</div>
+          <div class="fc-val status-val">
+            <span class="status-dot"></span>Open to work
+          </div>
+        </div>
+        <div class="fe-card fe-card2">
+          <div class="fc-lbl">Projects Built</div>
+          <div class="fc-val">8+</div>
+          <div class="fc-sub">Personal &amp; Academic</div>
+        </div>
+        <div class="fe-card fe-card3">
+          <div class="fc-lbl">Graduated</div>
+          <div class="fc-val fc-val-sm">APU · 2025</div>
+          <div class="fc-sub">CS (Hons) AI</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- AI HERO -->
+  <div class="container" id="ai-hero">
+    <div class="ai-grid-bg"></div>
+    <div class="ai-glow"></div>
+    <div class="ai-hero-inner">
+      <div>
+        <div class="ai-tag">AI Engineer · Fresh Graduate</div>
+        <h1 class="ai-name">Tay<br><span class="ai-acc">Jun</span><br>Long.</h1>
+        <p class="ai-sub">Researching · Building · Deploying AI<span class="blink"></span></p>
+        <p class="ai-desc">
+          CS graduate specialising in Artificial Intelligence from Asia Pacific University (APU).
+          I build ML models, fine-tune intelligent systems, and engineer AI pipelines that solve
+          real-world problems. Based in Malacca, Malaysia 🇲🇾
+        </p>
+        <div class="ai-cta">
+          <button class="ai-btn" onclick="document.getElementById('projects').scrollIntoView({behavior:'smooth'})">
+            View AI Projects
+          </button>
+          <button class="ai-btn2" onclick="document.getElementById('contact').scrollIntoView({behavior:'smooth'})">
+            Get In Touch
+          </button>
+        </div>
+      </div>
+      <div class="ai-terminal">
+        <div class="t-bar">
+          <div class="t-dot" style="background:#ff5f57"></div>
+          <div class="t-dot" style="background:#ffbd2e"></div>
+          <div class="t-dot" style="background:#28ca41"></div>
+        </div>
+        <div class="tl"><span class="tg">$</span> <span class="tw">python identify.py --who</span></div>
+        <div class="tl"><span class="tg">→</span> Tay Jun Long (AI Eng)</div>
+        <div class="tl mt"><span class="tg">$</span> <span class="tw">cat skills.json</span></div>
+        <div class="tl"><span class="tg">→</span> Python, PyTorch, C#</div>
+        <div class="tl"><span class="tg">→</span> ML, Deep Learning, NLP</div>
+        <div class="tl"><span class="tg">→</span> TensorFlow, Scikit-learn</div>
+        <div class="tl mt"><span class="tg">$</span> <span class="tw">status --jobs</span></div>
+        <div class="tl"><span class="ty">●</span> Actively seeking AI roles</div>
+        <div class="tl mt"><span class="tg">$</span> <span class="t-cur"></span></div>
+      </div>
+    </div>
+  </div>
+
+</section>
+
+<!-- ══════════════════════════════════════
+     ABOUT
+══════════════════════════════════════ -->
+<section id="about">
+  <div class="container">
+    <div class="about-grid">
+
+      <div class="av-wrap reveal">
+        <!-- Replace the div below with an <img> tag once you have your photo:
+             <img src="images/jun.jpg" alt="Tay Jun Long" class="av-photo"> -->
+        <img src="images/jun.jpg" alt="Tay Jun Long" class="av-photo">
+        <div class="corner corner-tl"></div>
+        <div class="corner corner-br"></div>
+      </div>
+
+      <div class="reveal">
+        <div class="sh">
+          <div class="sn">01 / About</div>
+          <h2 class="st" id="about-title">Who I Am</h2>
+          <div class="sl"></div>
+        </div>
+        <p class="about-p" id="about-p1"></p>
+        <p class="about-p" id="about-p2"></p>
+        <div class="pills" id="about-pills"></div>
+        <div class="a-stats">
+          <div><div class="stat-n">8+</div><div class="stat-l">Projects</div></div>
+          <div><div class="stat-n">1</div><div class="stat-l">Internship</div></div>
+          <div><div class="stat-n">∞</div><div class="stat-l">Curiosity</div></div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════
+     SKILLS
+══════════════════════════════════════ -->
+<section id="skills">
+  <div class="container">
+    <div class="sh reveal">
+      <div class="sn">02 / Skills</div>
+      <h2 class="st" id="skills-title">My Tech Stack</h2>
+      <div class="sl"></div>
+    </div>
+    <div class="sk-grid" id="sk-grid"></div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════
+     EXPERIENCE / JOURNEY
+══════════════════════════════════════ -->
+<section id="experience">
+  <div class="container">
+    <div class="sh reveal">
+      <div class="sn">03 / Journey</div>
+      <h2 class="st">Education &amp; Experience</h2>
+      <div class="sl"></div>
+    </div>
+    <div class="tl-wrap">
+
+      <div class="tl-item reveal">
+        <div class="tl-dot"></div>
+        <div class="tl-badge">🎓 Education</div>
+        <div class="tl-period">2021 – 2025</div>
+        <div class="tl-role">Bachelor of Computer Science (Hons) — Artificial Intelligence</div>
+        <div class="tl-org">Asia Pacific University (APU) · Malaysia</div>
+        <div class="tl-desc">
+          Focused on AI, machine learning, and software engineering. Developed strong foundations
+          in both frontend technologies and AI/ML methodologies. Graduated with a drive to bridge
+          intelligent systems and beautiful interfaces.
+        </div>
+        <div class="tl-tags">
+          <span class="tl-tag">Python</span>
+          <span class="tl-tag">React</span>
+          <span class="tl-tag">Machine Learning</span>
+          <span class="tl-tag">C#</span>
+        </div>
+      </div>
+
+      <div class="tl-item reveal">
+        <div class="tl-dot"></div>
+        <div class="tl-badge">💼 Internship</div>
+        <div class="tl-period">2024</div>
+        <div class="tl-role">Product Engineer Intern</div>
+        <div class="tl-org">CelcomDigi · Malaysia</div>
+        <div class="tl-desc">
+          Contributed to product engineering at one of Malaysia's largest telcos. Collaborated
+          with cross-functional teams on building and improving digital products, gaining hands-on
+          experience in frontend development and product delivery in a fast-paced enterprise
+          environment.
+        </div>
+        <div class="tl-tags">
+          <span class="tl-tag">Product Dev</span>
+          <span class="tl-tag">Frontend</span>
+          <span class="tl-tag">Agile</span>
+        </div>
+      </div>
+
+      <div class="tl-item reveal">
+        <div class="tl-dot"></div>
+        <div class="tl-badge">🏆 Final Year Project</div>
+        <div class="tl-period">2024 – 2025</div>
+        <!-- ✏️ EDIT: Replace with your actual FYP title -->
+        <div class="tl-role">[Your FYP Title Here]</div>
+        <div class="tl-org">Asia Pacific University · Capstone Project</div>
+        <!-- ✏️ EDIT: Describe your FYP — what it does, tech stack, results -->
+        <div class="tl-desc">
+          Add your Final Year Project description here. What problem does it solve? What was your
+          approach? What tech did you use and what results did you achieve? This is your showpiece!
+        </div>
+        <div class="tl-tags">
+          <!-- ✏️ EDIT: Add your actual FYP tech stack -->
+          <span class="tl-tag">Add Your Stack</span>
+          <span class="tl-tag">FYP</span>
+          <span class="tl-tag">Research</span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════
+     PROJECTS
+══════════════════════════════════════ -->
+<section id="projects">
+  <div class="container">
+    <div class="sh reveal">
+      <div class="sn">04 / Projects</div>
+      <h2 class="st" id="proj-title">Things I've Built</h2>
+      <div class="sl"></div>
+    </div>
+    <div class="pj-grid" id="pj-grid"></div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════
+     CONTACT
+══════════════════════════════════════ -->
+<section id="contact">
+  <div class="container">
+    <div class="ct-grid">
+
+      <div class="reveal">
+        <div class="sh">
+          <div class="sn">05 / Contact</div>
+          <h2 class="st">Let's Connect</h2>
+          <div class="sl"></div>
+        </div>
+        <p class="about-p">
+          I'm actively seeking my first role as a Frontend Developer or AI Engineer.
+          If you have an opening, a cool project, or just want to connect — I'd love to hear from you!
+        </p>
+        <div class="ct-info">
+          <div class="ct-item">
+            <span class="ct-ic">✉</span>
+            <a href="mailto:junlong1125@gmail.com">junlong1125@gmail.com</a>
+          </div>
+          <div class="ct-item">
+            <span class="ct-ic">📍</span>
+            <span>Malacca, Malaysia</span>
+          </div>
+          <div class="ct-item">
+            <span class="ct-ic">🎓</span>
+            <span>APU Graduate · CS (AI) 2025</span>
+          </div>
+          <div class="ct-item">
+            <span class="ct-ic">💼</span>
+            <span>Open to full-time &amp; graduate roles</span>
+          </div>
+        </div>
+        <div class="ct-links">
+          <a href="https://github.com/Junboiiiii" target="_blank" rel="noopener" class="ct-link-btn" id="gh-link">
+            GitHub ↗
+          </a>
+          <a href="https://www.linkedin.com/in/tay-jun-long-b55733231" target="_blank" rel="noopener" class="ct-link-btn" id="li-link">
+            LinkedIn ↗
+          </a>
+        </div>
+      </div>
+
+      <div class="reveal">
+        <form class="ct-form" id="contact-form" onsubmit="handleSubmit(event)">
+          <div class="fg">
+            <label class="fl" for="name">Your Name</label>
+            <input class="fi" type="text" id="name" name="name" placeholder="Jane Doe" required>
+          </div>
+          <div class="fg">
+            <label class="fl" for="email">Email</label>
+            <input class="fi" type="email" id="email" name="email" placeholder="jane@example.com" required>
+          </div>
+          <div class="fg">
+            <label class="fl" for="subject">Subject</label>
+            <input class="fi" type="text" id="subject" name="subject" placeholder="Job opportunity / Collaboration">
+          </div>
+          <div class="fg">
+            <label class="fl" for="message">Message</label>
+            <textarea class="fi" id="message" name="message" placeholder="I'd love to chat about..." required></textarea>
+          </div>
+          <button type="submit" id="send-btn">Send Message ✦</button>
+          <p class="form-status" id="form-status"></p>
+        </form>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════
+     FOOTER
+══════════════════════════════════════ -->
+<footer>
+  <div class="ft">© 2025 Tay Jun Long · Built from Malacca 🇲🇾</div>
+  <div class="soc">
+    <a href="https://github.com/Junboiiiii" target="_blank" rel="noopener">GitHub</a>
+    <a href="https://www.linkedin.com/in/tay-jun-long-b55733231" target="_blank" rel="noopener">LinkedIn</a>
+    <a href="mailto:junlong1125@gmail.com">Email</a>
+  </div>
+</footer>
+
+<!-- BGM toggle -->
+<button id="bgm" aria-label="Toggle background music" title="Toggle BGM">♪</button>
+
+<!-- Scripts -->
+<script src="js/data.js"></script>
+<script src="js/main.js"></script>
+
+</body>
+</html>
