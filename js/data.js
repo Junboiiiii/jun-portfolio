@@ -13,17 +13,17 @@ const DATA = {
 
     aboutTitle: 'The Dev Behind the Design',
 
-    p1: `Hey, I'm Jun — a fresh CS graduate from Asia Pacific University (APU) who fell in love
-         with the frontend. I believe great UI is invisible: it guides, delights, and never gets
-         in the way. I obsess over the details — the timing of an animation, the weight of a
-         typeface, the precision of a hover state.`,
+    p1: `Hey, I’m Jun — a Computer Science graduate from Asia Pacific University (APU) with a strong passion for 
+        frontend development. I believe great UI should feel effortless: it guides users naturally, feels responsive, 
+        and creates a seamless experience. I enjoy crafting clean, intuitive interfaces and paying attention to the small 
+        details that make products feel polished and engaging.`,
 
-    p2: `During my internship at CelcomDigi as a Product Engineer, I got a taste of building
-         digital products at scale in a fast-moving enterprise environment. Now I'm actively
-         seeking my first full-time frontend role where I can ship beautiful, performant
-         interfaces every day.`,
+    p2: `During my internship at CelcomDigi as a Product Engineer, I gained experience working in a fast-paced environment, 
+      collaborating across teams, and understanding how large-scale digital products are built. With my background in AI and backend 
+      systems, I also bring a strong problem-solving mindset to frontend development. I’m now seeking a frontend role where I can 
+      build performant, user-focused interfaces and contribute to real-world products.`,
 
-    pills: ['React', 'Next.js', 'Angular', 'Tailwind CSS', 'JavaScript', 'HTML / CSS', 'Figma', 'TypeScri'],
+    pills: ['React', 'Next.js', 'Angular', 'Tailwind CSS', 'JavaScript', 'HTML / CSS', 'Figma', 'TypeScrit', 'Canva'],
 
     skillsTitle: 'Frontend Tech Stack',
 
@@ -35,18 +35,19 @@ const DATA = {
       { ico: '✨',  nm: 'JavaScript',          lv: 'Confident',   w: '80%' },
       { ico: '🎨',  nm: 'Figma / UI Design',   lv: 'Comfortable', w: '75%' },
       { ico: '🔷',  nm: 'TypeScript',          lv: 'Learning',    w: '62%' },
+      { ico: '🖌️',  nm: 'Canva',          lv: 'Strong',    w: '88%' },
     ],
 
     projTitle: 'Frontend Projects',
 
     projects: [
       {
-        emoji: '🛒',
+        emoji: '💻',
         bg: 'linear-gradient(135deg, #f0eeff, #e8e2ff)',
-        tags: ['Next.js', 'Tailwind', 'CSS'],
-        title: 'E-Commerce UI',
-        desc: 'A responsive, animated storefront UI built in Next.js with smooth cart transitions, dark mode support, and a clean product catalogue layout.',
-        link: '#', // ✏️ Replace with your GitHub / live link
+        tags: [ 'React', 'CSS'],
+        title: 'github-explorer',
+        desc: 'Uses the real GitHub API — interviewers recognise it instantly. You search a username, fetch their public repos, show avatar, bio, follower count, top languages, and star counts.',
+        link: 'https://github-explorer-xi-tawny.vercel.app/', // ✏️ Replace with your GitHub / live link
       },
       {
         emoji: '🎨',
@@ -62,7 +63,7 @@ const DATA = {
         tags: ['React', 'Tailwind', 'Animation'],
         title: 'Portfolio & Landing Pages',
         desc: 'Multiple landing pages and personal portfolios built — fast, responsive, and pixel-perfect from Figma to code.',
-        link: '#', // ✏️ Replace with your GitHub / live link
+        link: 'https://jun-portfolio-sepia.vercel.app/', // ✏️ Replace with your GitHub / live link
       },
     ],
   },
@@ -74,15 +75,20 @@ const DATA = {
 
     aboutTitle: 'The Intelligence Behind the Code',
 
-    p1: `I'm Jun — a Computer Science (AI) graduate from Asia Pacific University (APU). My
-         passion is applying machine learning and deep learning to real problems: computer vision,
-         NLP, and intelligent systems that actually work in the wild, not just on paper.`,
+    p1: `I’m Jun — a Computer Science (Artificial Intelligence) graduate from Asia Pacific University (APU). 
+        I’m passionate about building applied AI systems that solve real-world problems, with experience in machine learning, 
+        computer vision, and NLP. I focus on turning ideas into practical, reliable solutions that go beyond experimentation and 
+        deliver real impact.`,
 
-    p2: `At CelcomDigi as a Product Engineer intern, I saw firsthand how data-driven thinking
-         shapes product decisions at scale. Now I'm ready to take that further — researching,
-         building, and deploying AI systems that solve meaningful real-world problems.`,
+    p2: `During my internship at CelcomDigi as a Product Engineer, I gained exposure to large-scale system design and data-driven 
+        decision-making in a fast-paced environment. I’ve also developed end-to-end AI projects, from data preprocessing and model 
+        development to system integration. I’m now looking to grow as an AI Engineer, contributing to the design and deployment of 
+        scalable, production-ready AI systems.`,
 
-    pills: ['Python', 'PyTorch', 'TensorFlow', 'Scikit-learn', 'C#', 'Machine Learning', 'Deep Learning', 'NLP'],
+    pills: ['Python', 'PyTorch', 'TensorFlow', 'Scikit-learn','Machine Learning', 'Deep Learning', 'NLP','LLMs', 'RAG', 
+          'Prompt Engineering','Feature Engineering', 'AI Agents',
+          'REST APIs', 'System Design',
+          'Pandas', 'NumPy'],
 
     skillsTitle: 'AI / ML Tech Stack',
 
@@ -91,29 +97,31 @@ const DATA = {
       { ico: '🔥',  nm: 'PyTorch',              lv: 'Confident',   w: '78%' },
       { ico: '🧠',  nm: 'Machine Learning',     lv: 'Confident',   w: '80%' },
       { ico: '👁️', nm: 'Deep Learning / CV',   lv: 'Learning',    w: '70%' },
-      { ico: '💬',  nm: 'NLP',                  lv: 'Familiar',    w: '65%' },
-      { ico: '📊',  nm: 'Scikit-learn / Pandas',lv: 'Confident',   w: '82%' },
-      { ico: '🎯',  nm: 'C#',                   lv: 'Familiar',    w: '58%' },
+      { ico: '💬',  nm: 'NLP / Chatbot Systems',                  lv: 'Familiar',    w: '65%' },
+      { ico: '📊',  nm: 'Scikit-learn / Pandas / NumPy',  lv: 'Confident',   w: '82%' },
+      { ico: '🔎',  nm: 'RAG / Vector Retrieval',         lv: 'Learning',    w: '60%' },
+      { ico: '🔗',  nm: 'REST API Development',           lv: 'Confident',   w: '75%' },
+      { ico: '⚙️',  nm: 'System Design',                  lv: 'Familiar',    w: '68%' },
+      { ico: '🤖',  nm: 'AI Agents (Basic)',              lv: 'Learning',    w: '60%' },
     ],
 
     projTitle: 'AI / ML Projects',
 
     projects: [
       {
-        emoji: '🤖',
+        emoji: '💋',
         bg: 'linear-gradient(135deg, #040c04, #081208)',
-        tags: ['Python', 'PyTorch', 'Deep Learning'],
-        // ✏️ Replace everything below with your real FYP details
-        title: 'FYP — [Your Project Title]',
-        desc: 'Add your Final Year Project here! Describe the problem, your model architecture, dataset used, and accuracy/results achieved. This is your showpiece.',
-        link: '#',
+        tags: ['Python', 'PyTorch', 'Deep Learning', 'Computer Vision','FASTAPI', 'KNN', 'OpenCV','Random Forest','ML'],
+        title: 'AI-Lips-Aesthetic-Recommender',
+        desc: 'Developed a modular AI system for aesthetic pre-consultation for lip enhancement planning',
+        link: 'lipglow-ai-tryon.vercel.app',
       },
       {
-        emoji: '📊',
+        emoji: '📚',
         bg: 'linear-gradient(135deg, #030a03, #060f06)',
-        tags: ['Python', 'Scikit-learn', 'Pandas'],
-        title: 'ML Classification Model',
-        desc: 'Built and evaluated multiple ML classifiers for a real-world dataset. Achieved strong accuracy through feature engineering and hyperparameter tuning.',
+        tags: ['Python', 'RAG', 'Next.js', 'Qdrant', 'FastAPI', 'LLMs'],
+        title: 'AI-policy-helper',
+        desc: 'A local-first RAG (Retrieval-Augmented Generation) system that answers company policy questions with citations. Built with FastAPI, Next.js, and Qdrant.',
         link: '#',
       },
       {

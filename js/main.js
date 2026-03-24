@@ -214,7 +214,7 @@ function closeMobileNav() {
 ══════════════════════════════════════════════════════════ */
 function initBGM() {
   const btn = document.getElementById('bgm');
-  let playing = false;
+  let playing = true;
   let ctx = null, osc = null, gain = null;
 
   const audio = new Audio('bgm.mp3');
