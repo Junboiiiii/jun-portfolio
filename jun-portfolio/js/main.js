@@ -217,7 +217,6 @@ function initBGM() {
   let playing = false;
   let ctx = null, osc = null, gain = null;
 
-  // ── Option A: Use a real .mp3 file (recommended) ──────
   const audio = new Audio('bgm.mp3');
   audio.loop   = true;
   audio.volume = 0.25;
@@ -225,8 +224,6 @@ function initBGM() {
      if (!playing) { audio.play(); btn.textContent = '♬'; playing = true; }
      else          { audio.pause(); btn.textContent = '♪'; playing = false; }
    });
-
-  // ── Option B: Web Audio tone placeholder (default) ────
   
 }
 
