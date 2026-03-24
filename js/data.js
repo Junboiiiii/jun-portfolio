@@ -114,7 +114,7 @@ const DATA = {
         tags: ['Python', 'PyTorch', 'Deep Learning', 'Computer Vision','FASTAPI', 'KNN', 'OpenCV','Random Forest','ML'],
         title: 'AI-Lips-Aesthetic-Recommender',
         desc: 'Developed a modular AI system for aesthetic pre-consultation for lip enhancement planning',
-        link: 'lipglow-ai-tryon.vercel.app',
+        link: 'https://lipglow-ai-tryon.vercel.app/',
       },
       {
         emoji: '📚',
