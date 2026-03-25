@@ -16,6 +16,7 @@ document.addEventListener('DOMContentLoaded', () => {
   initMobileNav();
   initBGM();
   initContactForm();
+  initAIHeroExtras();
   setContactLinkStyles('fe');
   setSendBtnStyle('fe');
 });
@@ -27,12 +28,8 @@ function switchTo(m) {
   if (mode === m) return;
   mode = m;
 
-  // Swap body class (drives all CSS theme changes)
+  // Swap body class — this drives ALL CSS theme changes including hero show/hide
   document.body.className = m;
-
-  // Toggle heroes
-  document.getElementById('fe-hero').style.display = m === 'fe' ? 'block' : 'none';
-  document.getElementById('ai-hero').style.display  = m === 'ai' ? 'block' : 'none';
 
   // Render dynamic content
   renderAll();
@@ -214,17 +211,231 @@ function closeMobileNav() {
 ══════════════════════════════════════════════════════════ */
 function initBGM() {
   const btn = document.getElementById('bgm');
-  let playing = true;
+  let playing = false;
   let ctx = null, osc = null, gain = null;
 
-  const audio = new Audio('bgm.mp3');
-  audio.loop   = true;
-  audio.volume = 0.25;
+  // ── Option A: Use a real .mp3 file (recommended) ──────
+  // const audio = new Audio('bgm.mp3');
+  // audio.loop   = true;
+  // audio.volume = 0.25;
+  // btn.addEventListener('click', () => {
+  //   if (!playing) { audio.play(); btn.textContent = '♬'; playing = true; }
+  //   else          { audio.pause(); btn.textContent = '♪'; playing = false; }
+  // });
+
+  // ── Option B: Web Audio tone placeholder (default) ────
   btn.addEventListener('click', () => {
-     if (!playing) { audio.play(); btn.textContent = '♬'; playing = true; }
-     else          { audio.pause(); btn.textContent = '♪'; playing = false; }
-   });
-  
+    if (!playing) {
+      ctx  = new (window.AudioContext || window.webkitAudioContext)();
+      gain = ctx.createGain();
+      gain.gain.value = 0.035;
+      gain.connect(ctx.destination);
+
+      osc = ctx.createOscillator();
+      osc.type      = mode === 'fe' ? 'sine' : 'triangle';
+      osc.frequency.value = mode === 'fe' ? 261 : 185;
+      osc.connect(gain);
+      osc.start();
+
+      btn.textContent = '♬';
+      playing = true;
+    } else {
+      if (osc)  { osc.stop(); osc = null; }
+      if (ctx)  { ctx.close(); ctx = null; }
+      btn.textContent = '♪';
+      playing = false;
+    }
+  });
+}
+
+/* ══════════════════════════════════════════════════════════
+   STACKED PHOTO CAROUSEL
+══════════════════════════════════════════════════════════ */
+/*const CAROUSEL_LABELS = [
+  'Hello, I\'m Jun1! 👋',
+  'Hello, I\'m Jun2! 👋',
+  'Hello, I\'m Jun3! 👋',
+];*/
+
+const carouselState = {
+  'fe-hero': { current: 0 },   // FE hero page carousel
+  'fe':      { current: 0 },   // About section carousel
+  'ai':      { current: 0 },   // AI carousel (if used)
+};
+
+function rotateCarousel(id, dir) {
+  const state = carouselState[id];
+  if (!state) return;
+
+  // All FE carousels use .photo-card, AI uses .ai-photo-card
+  const selector = id === 'ai' ? '.ai-photo-card' : '.photo-card';
+  const el = document.getElementById(id + '-carousel');
+  if (!el) return;
+
+  const cards = [...el.querySelectorAll(selector)];
+  const n = cards.length;
+  state.current = (state.current - dir + n) % n;
+
+  cards.forEach(card => {
+    const idx = parseInt(card.getAttribute('data-idx'));
+    const pos = (idx - state.current + n) % n;
+    card.setAttribute('data-pos', pos);
+  });
+
+  // Update dots — dot container id = id + '-dots'
+  const dotsEl = document.getElementById(id + '-dots');
+  if (dotsEl) {
+    [...dotsEl.querySelectorAll('.carr-dot')].forEach((dot, i) => {
+      dot.classList.toggle('active', i === state.current);
+    });
+  }
+
+  // Update label for fe-hero carousel
+  if (id === 'fe-hero') {
+    const lbl = document.getElementById('fe-hero-label');
+    if (lbl) lbl.textContent = CAROUSEL_LABELS[state.current] || '';
+  }
+  // Update label for about carousel
+  if (id === 'fe') {
+    const lbl = document.getElementById('fe-card-label');
+    if (lbl) lbl.textContent = CAROUSEL_LABELS[state.current] || '';
+  }
+}
+
+/* ══════════════════════════════════════════════════════════
+   AI HERO EXTRAS — live clock + coordinate tracker
+══════════════════════════════════════════════════════════ */
+function initAIHeroExtras() {
+  /* ── Live clock ─────────────────────────────────────── */
+  function tickClock() {
+    const el = document.getElementById('ai-clock');
+    if (!el) return;
+    el.textContent = new Date().toLocaleTimeString('en-MY', {
+      hour: '2-digit', minute: '2-digit', second: '2-digit',
+      hour12: false, timeZone: 'Asia/Kuala_Lumpur'
+    }) + ' MYT';
+  }
+  tickClock();
+  setInterval(tickClock, 1000);
+
+  /* ── Coordinate tracker ─────────────────────────────── */
+  const aiHero = document.getElementById('ai-hero');
+  if (aiHero) {
+    aiHero.addEventListener('mousemove', e => {
+      const r   = aiHero.getBoundingClientRect();
+      const dx  = Math.round(e.clientX - r.left - r.width  / 2);
+      const dy  = Math.round(e.clientY - r.top  - r.height / 2);
+      const cel = document.getElementById('ai-coords');
+      if (cel) cel.textContent = 'dx: ' + dx + ', dy: ' + dy;
+    });
+  }
+
+  /* ── Draggable JUN ──────────────────────────────────── */
+  const junEl   = document.getElementById('jun-drag');
+  const tipName = document.getElementById('drag-tooltip-name');
+  const tipStat = document.getElementById('drag-tooltip-status');
+  if (!junEl) return;
+
+  const DRAG_MSGS = [
+    'Aligning to Grid...',
+    "Don't move my layout!",
+    'Grid integrity: FAILING',
+    'Please. Stop. Dragging.',
+    'CSS is crying rn.',
+  ];
+  const SNAP_MSGS = [
+    'Again? We just fixed this.',
+    'Back where you belong.',
+    'Grid restored. For now.',
+    'Snapping back...',
+  ];
+
+  let dragging = false;
+  let ox = 0, oy = 0, cx = 0, cy = 0;
+
+  function pick(arr) { return arr[Math.floor(Math.random() * arr.length)]; }
+
+  function moveTips(px, py) {
+    [tipName, tipStat].forEach(t => {
+      if (!t) return;
+      t.style.display = 'block';
+      t.style.left = px + 'px';
+      t.style.top  = py + 'px';
+    });
+  }
+  function hideTips() {
+    if (tipName) tipName.style.display = 'none';
+    if (tipStat) tipStat.style.display = 'none';
+  }
+
+  /* Mouse */
+  junEl.addEventListener('mousedown', e => {
+    dragging = true;
+    ox = e.clientX - cx;
+    oy = e.clientY - cy;
+    junEl.classList.add('is-dragging');
+    junEl.classList.remove('is-snapping');
+    if (tipStat) tipStat.textContent = pick(DRAG_MSGS);
+    moveTips(e.clientX, e.clientY);
+    e.preventDefault();
+  });
+
+  document.addEventListener('mousemove', e => {
+    if (!dragging) return;
+    cx = e.clientX - ox;
+    cy = e.clientY - oy;
+    junEl.style.transform = `translate(${cx}px,${cy}px)`;
+    const cel = document.getElementById('ai-coords');
+    if (cel) cel.textContent = 'dx: ' + Math.round(cx) + ', dy: ' + Math.round(cy);
+    moveTips(e.clientX, e.clientY);
+  });
+
+  document.addEventListener('mouseup', () => {
+    if (!dragging) return;
+    dragging = false;
+    cx = 0; cy = 0;
+    junEl.classList.remove('is-dragging');
+    junEl.classList.add('is-snapping');
+    junEl.style.transform = 'translate(0px,0px)';
+    if (tipStat) tipStat.textContent = pick(SNAP_MSGS);
+    const cel = document.getElementById('ai-coords');
+    if (cel) cel.textContent = 'dx: 0, dy: 0';
+    setTimeout(() => { junEl.classList.remove('is-snapping'); hideTips(); }, 900);
+  });
+
+  /* Touch */
+  junEl.addEventListener('touchstart', e => {
+    const t = e.touches[0];
+    dragging = true;
+    ox = t.clientX - cx;
+    oy = t.clientY - cy;
+    junEl.classList.add('is-dragging');
+    junEl.classList.remove('is-snapping');
+    if (tipStat) tipStat.textContent = pick(DRAG_MSGS);
+    moveTips(t.clientX, t.clientY);
+    e.preventDefault();
+  }, { passive: false });
+
+  junEl.addEventListener('touchmove', e => {
+    if (!dragging) return;
+    const t = e.touches[0];
+    cx = t.clientX - ox;
+    cy = t.clientY - oy;
+    junEl.style.transform = `translate(${cx}px,${cy}px)`;
+    moveTips(t.clientX, t.clientY);
+    e.preventDefault();
+  }, { passive: false });
+
+  junEl.addEventListener('touchend', () => {
+    if (!dragging) return;
+    dragging = false;
+    cx = 0; cy = 0;
+    junEl.classList.remove('is-dragging');
+    junEl.classList.add('is-snapping');
+    junEl.style.transform = 'translate(0px,0px)';
+    if (tipStat) tipStat.textContent = pick(SNAP_MSGS);
+    setTimeout(() => { junEl.classList.remove('is-snapping'); hideTips(); }, 900);
+  });
 }
 
 /* ══════════════════════════════════════════════════════════

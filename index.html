@@ -59,13 +59,15 @@
      HERO SECTION
 ══════════════════════════════════════ -->
 <section id="hero">
-
-  <!-- FRONTEND HERO -->
+ 
+  <!-- ══ FRONTEND HERO ══ -->
   <div class="container" id="fe-hero">
     <div class="fe-blob1 fe-hero-blob"></div>
     <div class="fe-blob2 fe-hero-blob"></div>
     <div class="fe-blob3 fe-hero-blob"></div>
+    <div class="fe-dot-grid"></div>
     <div class="fe-hero-inner">
+ 
       <div>
         <div class="fe-eyebrow">Frontend / UI Developer · Fresh Grad</div>
         <h1 class="fe-name">Tay<br><em>Jun Long</em></h1>
@@ -75,80 +77,76 @@
           clean UI, smooth animations, and turning Figma designs into living, breathing code.
           Based in Kuala Lumpur, Malaysia, building for the web.
         </p>
+        <div class="fe-status-bar">
+          <div class="fe-badge fe-badge-green"><span class="status-dot"></span>Open to work</div>
+          <div class="fe-badge fe-badge-purple">8+ Projects</div>
+          <div class="fe-badge fe-badge-warm">APU · 2025</div>
+        </div>
         <div class="fe-cta">
-          <button class="fe-btn" onclick="document.getElementById('projects').scrollIntoView({behavior:'smooth'})">
-            See My Work
-          </button>
-          <button class="fe-btn2" onclick="document.getElementById('contact').scrollIntoView({behavior:'smooth'})">
-            Hire Me
-          </button>
+          <button class="fe-btn" onclick="document.getElementById('projects').scrollIntoView({behavior:'smooth'})">See My Work</button>
+          <button class="fe-btn2" onclick="document.getElementById('contact').scrollIntoView({behavior:'smooth'})">Hire Me</button>
         </div>
       </div>
-      <div class="fe-visual">
-        <div class="fo1 fe-orb"></div>
-        <div class="fo2 fe-orb"></div>
-        <div class="fe-card fe-card1">
-          <div class="fc-lbl">Status</div>
-          <div class="fc-val status-val">
-            <span class="status-dot"></span>Open to work
+ 
+      <div class="fe-carousel-side">
+        <div class="carousel-wrap" id="fe-hero-carousel">
+          <div class="photo-card" data-pos="0" data-idx="0">
+            <img src="images/photo1.jpg" alt="Tay Jun Long" class="av av-photo">
+          </div>
+          <div class="photo-card" data-pos="1" data-idx="1">
+            <img src="images/photo2.jpg" alt="Tay Jun Long" class="av av-photo">
+          </div>
+          <div class="photo-card" data-pos="2" data-idx="2">
+            <img src="images/photo3.jpg" alt="Tay Jun Long" class="av av-photo">
           </div>
         </div>
-        <div class="fe-card fe-card2">
-          <div class="fc-lbl">Projects Built</div>
-          <div class="fc-val">8+</div>
-          <div class="fc-sub">Personal &amp; Academic</div>
+        <div class="carousel-controls">
+          <button class="carr-btn" onclick="rotateCarousel('fe-hero',-1)" aria-label="Previous">&#8592;</button>
+          <div class="carr-dots" id="fe-hero-dots">
+            <div class="carr-dot active"></div><div class="carr-dot"></div><div class="carr-dot"></div>
+          </div>
+          <button class="carr-btn" onclick="rotateCarousel('fe-hero',1)" aria-label="Next">&#8594;</button>
         </div>
-        <div class="fe-card fe-card3">
-          <div class="fc-lbl">Graduated</div>
-          <div class="fc-val fc-val-sm">APU · 2025</div>
-          <div class="fc-sub">CS (Hons) AI</div>
-        </div>
+        
       </div>
+ 
     </div>
   </div>
-
-  <!-- AI HERO -->
+ 
+  <!-- ══ AI HERO ══ -->
   <div class="container" id="ai-hero">
     <div class="ai-grid-bg"></div>
-    <div class="ai-glow"></div>
-    <div class="ai-hero-inner">
-      <div>
-        <div class="ai-tag">AI Engineer · Fresh Graduate</div>
-        <h1 class="ai-name">Tay<br><span class="ai-acc">Jun</span><br>Long.</h1>
-        <p class="ai-sub">Researching · Building · Deploying AI<span class="blink"></span></p>
-        <p class="ai-desc">
-          CS graduate specialising in Artificial Intelligence from Asia Pacific University (APU).
-          I build ML models, fine-tune intelligent systems, and engineer AI pipelines that solve
-          real-world problems. Based in Kuala Lumpur, Malaysia.
-        </p>
-        <div class="ai-cta">
-          <button class="ai-btn" onclick="document.getElementById('projects').scrollIntoView({behavior:'smooth'})">
-            View AI Projects
-          </button>
-          <button class="ai-btn2" onclick="document.getElementById('contact').scrollIntoView({behavior:'smooth'})">
-            Get In Touch
-          </button>
-        </div>
+    <div class="ai-scanline"></div>
+ 
+    <div class="ai-coord-tracker">
+      <span class="ai-coord-dot"></span>
+      <span id="ai-coords">dx: 0, dy: 0</span>
+    </div>
+ 
+    <div class="ai-topbar">
+      <span class="ai-location">Kuala Lumpur, MY</span>
+      <span class="ai-clock" id="ai-clock">--:--:-- MYT</span>
+    </div>
+ 
+    <div class="drag-tooltip" id="drag-tooltip-name">JUN</div>
+    <div class="drag-tooltip" id="drag-tooltip-status">Aligning to Grid...</div>
+ 
+    <div class="ai-name-stage">
+      <div class="ai-giant-name">
+        <span class="ai-word-static">TAY</span>
+        <span class="ai-word-drag" id="jun-drag">JUN</span>
+        <span class="ai-word-static">LONG</span>
       </div>
-      <div class="ai-terminal">
-        <div class="t-bar">
-          <div class="t-dot" style="background:#ff5f57"></div>
-          <div class="t-dot" style="background:#ffbd2e"></div>
-          <div class="t-dot" style="background:#28ca41"></div>
-        </div>
-        <div class="tl"><span class="tg">$</span> <span class="tw">python identify.py --who</span></div>
-        <div class="tl"><span class="tg">→</span> Tay Jun Long (AI Eng)</div>
-        <div class="tl mt"><span class="tg">$</span> <span class="tw">cat skills.json</span></div>
-        <div class="tl"><span class="tg">→</span> Python, PyTorch, C#</div>
-        <div class="tl"><span class="tg">→</span> ML, Deep Learning, NLP</div>
-        <div class="tl"><span class="tg">→</span> TensorFlow, Scikit-learn</div>
-        <div class="tl mt"><span class="tg">$</span> <span class="tw">status --jobs</span></div>
-        <div class="tl"><span class="ty">●</span> Actively seeking AI roles</div>
-        <div class="tl mt"><span class="tg">$</span> <span class="t-cur"></span></div>
+      <p class="ai-one-liner">
+        CS (AI) Graduate &nbsp;·&nbsp; Building intelligent systems from Kuala Lumpur, Malaysia
+      </p>
+      <div class="ai-cta" style="justify-content:center;margin-top:2rem;">
+        <button class="ai-btn" onclick="document.getElementById('projects').scrollIntoView({behavior:'smooth'})">View AI Projects</button>
+        <button class="ai-btn2" onclick="document.getElementById('contact').scrollIntoView({behavior:'smooth'})">Get In Touch</button>
       </div>
     </div>
   </div>
-
+ 
 </section>
 
 <!-- ══════════════════════════════════════
@@ -157,15 +155,30 @@
 <section id="about">
   <div class="container">
     <div class="about-grid">
-
-      <div class="av-wrap reveal">
-        <!-- Replace the div below with an <img> tag once you have your photo:
-             <img src="images/jun.jpg" alt="Tay Jun Long" class="av-photo"> -->
-        <img src="images/jun.jpg" alt="Tay Jun Long" class="av-photo">
-        <div class="corner corner-tl"></div>
-        <div class="corner corner-br"></div>
+ 
+      <div class="ai-carousel-side">
+        <div class="ai-carousel-wrap" id="ai-carousel">
+          <div class="ai-photo-card" data-pos="0" data-idx="0">
+            <div class="ai-card-inner">[ photo_01.jpg ]</div>
+          </div>
+          <div class="ai-photo-card" data-pos="1" data-idx="1">
+            <div class="ai-card-inner">[ photo_02.jpg ]</div>
+          </div>
+          <div class="ai-photo-card" data-pos="2" data-idx="2">
+            <div class="ai-card-inner">[ photo_03.jpg ]</div>
+          </div>
+        </div>
+        <div class="carousel-controls">
+          <button class="ai-carr-btn" onclick="rotateCarousel('ai',-1)" aria-label="Previous">&#8592;</button>
+          <div class="carr-dots ai-carr-dots" id="ai-dots">
+            <div class="carr-dot active"></div>
+            <div class="carr-dot"></div>
+            <div class="carr-dot"></div>
+          </div>
+          <button class="ai-carr-btn" onclick="rotateCarousel('ai',1)" aria-label="Next">&#8594;</button>
+        </div>
       </div>
-
+ 
       <div class="reveal">
         <div class="sh">
           <div class="sn">01 / About</div>
@@ -181,7 +194,7 @@
           <div><div class="stat-n">∞</div><div class="stat-l">Curiosity</div></div>
         </div>
       </div>
-
+ 
     </div>
   </div>
 </section>

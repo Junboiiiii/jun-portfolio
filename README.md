@@ -79,7 +79,7 @@ const DATA = {
 ```
 3. Replace the entire `<div class="av">...</div>` with:
 ```html
-<img src="images/jun.jpg" alt="Tay Jun Long" class="av av-photo">
+<img src="images/photo1.jpg" alt="Tay Jun Long" class="av av-photo">
 ```
 
 ### 3. Fill In Your FYP

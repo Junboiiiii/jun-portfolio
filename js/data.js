@@ -114,7 +114,7 @@ const DATA = {
         tags: ['Python', 'PyTorch', 'Deep Learning', 'Computer Vision','FASTAPI', 'KNN', 'OpenCV','Random Forest','ML'],
         title: 'AI-Lips-Aesthetic-Recommender',
         desc: 'Developed a modular AI system for aesthetic pre-consultation for lip enhancement planning',
-        link: 'https://lipglow-ai-tryon.vercel.app/',
+        link: 'lipglow-ai-tryon.vercel.app',
       },
       {
         emoji: '📚',
@@ -122,7 +122,7 @@ const DATA = {
         tags: ['Python', 'RAG', 'Next.js', 'Qdrant', 'FastAPI', 'LLMs'],
         title: 'AI-policy-helper',
         desc: 'A local-first RAG (Retrieval-Augmented Generation) system that answers company policy questions with citations. Built with FastAPI, Next.js, and Qdrant.',
-        link: '#',
+        link: 'https://github.com/Junboiiiii/ai-policy-helper',
       },
       {
         emoji: '👁️',
