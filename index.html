@@ -88,7 +88,7 @@
         </div>
       </div>
  
-      <div class="fe-carousel-side">
+      <!--<div class="fe-carousel-side">
         <div class="carousel-wrap" id="fe-hero-carousel">
           <div class="photo-card" data-pos="0" data-idx="0">
             <img src="images/photo1.jpg" alt="Tay Jun Long" class="av av-photo">
@@ -108,7 +108,7 @@
           <button class="carr-btn" onclick="rotateCarousel('fe-hero',1)" aria-label="Next">&#8594;</button>
         </div>
         
-      </div>
+      </div>-->
  
     </div>
   </div>
@@ -156,16 +156,16 @@
   <div class="container">
     <div class="about-grid">
  
-      <div class="ai-carousel-side">
+      <div class="ai-carousel-side" id="ai-carousel-side">
         <div class="ai-carousel-wrap" id="ai-carousel">
           <div class="ai-photo-card" data-pos="0" data-idx="0">
-            <div class="ai-card-inner">[ photo_01.jpg ]</div>
+            <img src="images/photo1.jpg" alt="Tay Jun Long" class="av av-photo">
           </div>
           <div class="ai-photo-card" data-pos="1" data-idx="1">
-            <div class="ai-card-inner">[ photo_02.jpg ]</div>
+            <img src="images/photo2.jpg" alt="Tay Jun Long" class="av av-photo">
           </div>
           <div class="ai-photo-card" data-pos="2" data-idx="2">
-            <div class="ai-card-inner">[ photo_03.jpg ]</div>
+            <img src="images/photo3.jpg" alt="Tay Jun Long" class="av av-photo">
           </div>
         </div>
         <div class="carousel-controls">
@@ -177,6 +177,28 @@
           </div>
           <button class="ai-carr-btn" onclick="rotateCarousel('ai',1)" aria-label="Next">&#8594;</button>
         </div>
+      </div>
+
+      <div class="fe-carousel-side" id="fe-carousel-side">
+        <div class="carousel-wrap" id="fe-hero-carousel">
+          <div class="photo-card" data-pos="0" data-idx="0">
+            <img src="images/photo1.jpg" alt="Tay Jun Long" class="av av-photo">
+          </div>
+          <div class="photo-card" data-pos="1" data-idx="1">
+            <img src="images/photo2.jpg" alt="Tay Jun Long" class="av av-photo">
+          </div>
+          <div class="photo-card" data-pos="2" data-idx="2">
+            <img src="images/photo3.jpg" alt="Tay Jun Long" class="av av-photo">
+          </div>
+        </div>
+        <div class="carousel-controls">
+          <button class="carr-btn" onclick="rotateCarousel('fe-hero',-1)" aria-label="Previous">&#8592;</button>
+          <div class="carr-dots" id="fe-hero-dots">
+            <div class="carr-dot active"></div><div class="carr-dot"></div><div class="carr-dot"></div>
+          </div>
+          <button class="carr-btn" onclick="rotateCarousel('fe-hero',1)" aria-label="Next">&#8594;</button>
+        </div>
+        
       </div>
  
       <div class="reveal">

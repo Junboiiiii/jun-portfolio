@@ -66,6 +66,23 @@ function renderAbout() {
   pillsEl.innerHTML = d.pills
     .map(p => `<span class="pill">${p}</span>`)
     .join('');
+
+  const aiCarousel = document.getElementById('ai-carousel-side');
+  if (aiCarousel) {
+    if (mode === 'ai') {
+      aiCarousel.style.display = 'flex'; 
+    } else {
+      aiCarousel.style.display = 'none';
+    }
+  }
+  const feCarousel = document.getElementById('fe-carousel-side');
+  if (feCarousel) {
+    if (mode === 'fe') {
+      feCarousel.style.display = 'block'; 
+    } else {
+      feCarousel.style.display = 'none';
+    }
+  }
 }
 
 function renderSkills() {
