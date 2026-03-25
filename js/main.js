@@ -319,52 +319,66 @@ function rotateCarousel(id, dir) {
   }
 }
 
-/* ══════════════════════════════════════════════════════════
-   AI HERO EXTRAS — live clock + coordinate tracker
-══════════════════════════════════════════════════════════ */
-function initAIHeroExtras() {
-  /* ── Live clock ─────────────────────────────────────── */
-  function tickClock() {
-    const el = document.getElementById('ai-clock');
-    if (!el) return;
-    el.textContent = new Date().toLocaleTimeString('en-MY', {
+/* ── Universal Live Clock ─────────────────────────────── */
+function initClocks() {
+  function tick() {
+    // Generate the time string once
+    const timeString = new Date().toLocaleTimeString('en-MY', {
       hour: '2-digit', minute: '2-digit', second: '2-digit',
       hour12: false, timeZone: 'Asia/Kuala_Lumpur'
     }) + ' MYT';
-  }
-  tickClock();
-  setInterval(tickClock, 1000);
 
-  /* ── Coordinate tracker ─────────────────────────────── */
-  const aiHero = document.getElementById('ai-hero');
-  if (aiHero) {
-    aiHero.addEventListener('mousemove', e => {
-      const r   = aiHero.getBoundingClientRect();
-      const dx  = Math.round(e.clientX - r.left - r.width  / 2);
-      const dy  = Math.round(e.clientY - r.top  - r.height / 2);
-      const cel = document.getElementById('ai-coords');
-      if (cel) cel.textContent = 'dx: ' + dx + ', dy: ' + dy;
-    });
+    // Apply it to both clocks if they exist
+    const feClock = document.getElementById('fe-clock');
+    const aiClock = document.getElementById('ai-clock');
+    
+    if (feClock) feClock.textContent = timeString;
+    if (aiClock) aiClock.textContent = timeString;
   }
+  
+  tick();
+  setInterval(tick, 1000);
+}
+
+/* ── Coordinate Tracker ──────────────────────── */
+function initCoordTracker(heroId, coordsId) {
+  const hero = document.getElementById(heroId);
+  const coords = document.getElementById(coordsId);
+
+  if (!hero || !coords) return;
+
+  hero.addEventListener('mousemove', e => {
+    // Stop calculating if this hero is currently hidden
+    if (hero.offsetWidth === 0) return;
+
+    const r  = hero.getBoundingClientRect();
+    const dx = Math.round(e.clientX - r.left - r.width  / 2);
+    const dy = Math.round(e.clientY - r.top  - r.height / 2);
+    
+    coords.textContent = 'dx: ' + dx + ', dy: ' + dy;
+  });
+}
+
 
   /* ── Draggable JUN ──────────────────────────────────── */
-  const junEl   = document.getElementById('jun-drag');
-  const tipName = document.getElementById('drag-tooltip-name');
-  const tipStat = document.getElementById('drag-tooltip-status');
+function createDraggableWord(dragId, tipNameId, tipStatId, coordsId) {
+  const junEl   = document.getElementById(dragId);
+  const tipName = document.getElementById(tipNameId);
+  const tipStat = document.getElementById(tipStatId);
+  const coords  = document.getElementById(coordsId);
+  
   if (!junEl) return;
 
   const DRAG_MSGS = [
     'Aligning to Grid...',
     "Don't move my layout!",
     'Grid integrity: FAILING',
-    'Please. Stop. Dragging.',
-    'CSS is crying rn.',
+    'CSS is crying rn.'
   ];
   const SNAP_MSGS = [
     'Again? We just fixed this.',
     'Back where you belong.',
-    'Grid restored. For now.',
-    'Snapping back...',
+    'Snapping back...'
   ];
 
   let dragging = false;
@@ -373,20 +387,27 @@ function initAIHeroExtras() {
   function pick(arr) { return arr[Math.floor(Math.random() * arr.length)]; }
 
   function moveTips(px, py) {
-    [tipName, tipStat].forEach(t => {
+    [tipName, tipStat].forEach((t, i) => {
       if (!t) return;
       t.style.display = 'block';
-      t.style.left = px + 'px';
-      t.style.top  = py + 'px';
+      t.style.left = (px + 15) + 'px';
+      t.style.top  = (py + (i * 25)) + 'px';
     });
   }
+  
   function hideTips() {
     if (tipName) tipName.style.display = 'none';
     if (tipStat) tipStat.style.display = 'none';
   }
 
-  /* Mouse */
+  // --- MOUSE EVENTS --- //
+  
+  // 1. The mousedown starts on the specific element
   junEl.addEventListener('mousedown', e => {
+    // Only allow dragging if this element is actually visible!
+    // (Prevents the hidden hero from trying to drag)
+    if (junEl.offsetParent === null) return; 
+
     dragging = true;
     ox = e.clientX - cx;
     oy = e.clientY - cy;
@@ -397,16 +418,17 @@ function initAIHeroExtras() {
     e.preventDefault();
   });
 
+  // 2. We keep mousemove on the document so it tracks if you drag fast
   document.addEventListener('mousemove', e => {
-    if (!dragging) return;
+    if (!dragging) return; // If THIS specific word isn't dragging, ignore it!
     cx = e.clientX - ox;
     cy = e.clientY - oy;
     junEl.style.transform = `translate(${cx}px,${cy}px)`;
-    const cel = document.getElementById('ai-coords');
-    if (cel) cel.textContent = 'dx: ' + Math.round(cx) + ', dy: ' + Math.round(cy);
+    if (coords) coords.textContent = 'dx: ' + Math.round(cx) + ', dy: ' + Math.round(cy);
     moveTips(e.clientX, e.clientY);
   });
 
+  // 3. Mouseup stops THIS specific word
   document.addEventListener('mouseup', () => {
     if (!dragging) return;
     dragging = false;
@@ -415,13 +437,13 @@ function initAIHeroExtras() {
     junEl.classList.add('is-snapping');
     junEl.style.transform = 'translate(0px,0px)';
     if (tipStat) tipStat.textContent = pick(SNAP_MSGS);
-    const cel = document.getElementById('ai-coords');
-    if (cel) cel.textContent = 'dx: 0, dy: 0';
+    if (coords) coords.textContent = 'dx: 0, dy: 0';
     setTimeout(() => { junEl.classList.remove('is-snapping'); hideTips(); }, 900);
   });
 
-  /* Touch */
+  // --- TOUCH EVENTS (Mobile) --- //
   junEl.addEventListener('touchstart', e => {
+    if (junEl.offsetParent === null) return;
     const t = e.touches[0];
     dragging = true;
     ox = t.clientX - cx;
@@ -433,17 +455,18 @@ function initAIHeroExtras() {
     e.preventDefault();
   }, { passive: false });
 
-  junEl.addEventListener('touchmove', e => {
+  document.addEventListener('touchmove', e => { // Changed to document
     if (!dragging) return;
     const t = e.touches[0];
     cx = t.clientX - ox;
     cy = t.clientY - oy;
     junEl.style.transform = `translate(${cx}px,${cy}px)`;
+    if (coords) coords.textContent = 'dx: ' + Math.round(cx) + ', dy: ' + Math.round(cy);
     moveTips(t.clientX, t.clientY);
     e.preventDefault();
   }, { passive: false });
 
-  junEl.addEventListener('touchend', () => {
+  document.addEventListener('touchend', () => { // Changed to document
     if (!dragging) return;
     dragging = false;
     cx = 0; cy = 0;
@@ -451,9 +474,35 @@ function initAIHeroExtras() {
     junEl.classList.add('is-snapping');
     junEl.style.transform = 'translate(0px,0px)';
     if (tipStat) tipStat.textContent = pick(SNAP_MSGS);
+    if (coords) coords.textContent = 'dx: 0, dy: 0';
     setTimeout(() => { junEl.classList.remove('is-snapping'); hideTips(); }, 900);
   });
 }
+
+// Activate Frontend Dragging
+createDraggableWord(
+  'fe-jun-drag', 
+  'fe-drag-tooltip-name', 
+  'fe-drag-tooltip-status', 
+  'fe-coords'
+);
+
+// Activate AI Dragging
+createDraggableWord(
+  'ai-jun-drag', 
+  'ai-drag-tooltip-name', 
+  'ai-drag-tooltip-status', 
+  'ai-coords'
+);
+
+// Activate Universal Clock
+initClocks();
+
+// Activate Frontend Tracker
+initCoordTracker('fe-hero', 'fe-coords');
+
+// Activate AI Tracker
+initCoordTracker('ai-hero', 'ai-coords');
 
 /* ══════════════════════════════════════════════════════════
    CONTACT FORM

@@ -60,8 +60,8 @@ const DATA = {
       {
         emoji: '📱',
         bg: 'linear-gradient(135deg, #f0f8ff, #e8f4ff)',
-        tags: ['React', 'Tailwind', 'Animation'],
-        title: 'Portfolio & Landing Pages',
+        tags: ['React', 'Tailwind', 'Animation','CSS', 'HTML','JavaScript'],
+        title: 'Portfolio Website ',
         desc: 'Multiple landing pages and personal portfolios built — fast, responsive, and pixel-perfect from Figma to code.',
         link: 'jun-portfolio-xi.vercel.app/', // ✏️ Replace with your GitHub / live link
       },
