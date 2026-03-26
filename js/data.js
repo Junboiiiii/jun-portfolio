@@ -50,12 +50,12 @@ const DATA = {
         link: 'https://github-explorer-xi-tawny.vercel.app/', // ✏️ Replace with your GitHub / live link
       },
       {
-        emoji: '🎨',
+        emoji: '🛒',
         bg: 'linear-gradient(135deg, #fff0f5, #ffe8f0)',
-        tags: ['Angular', 'Figma', 'CSS'],
-        title: 'UI Component Library',
-        desc: '20+ reusable Angular components designed in Figma first, with full dark mode and keyboard accessibility support.',
-        link: '#', // ✏️ Replace with your GitHub / live link
+        tags: ['Angular', 'SCSS', 'RESTful APIs','HTML', 'TypeScript'],
+        title: 'E-commerce Platform (Shop-flow)',
+        desc: 'Built a fully responsive e-commerce single-page application using Angular 17 and SCSS, integrating RESTful APIs for dynamic product data.',
+        link: 'https://shopflow-henna.vercel.app/products', // ✏️ Replace with your GitHub / live link
       },
       {
         emoji: '📱',
