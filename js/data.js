@@ -47,7 +47,7 @@ const DATA = {
         tags: [ 'React', 'CSS'],
         title: 'github-explorer',
         desc: 'Uses the real GitHub API — interviewers recognise it instantly. You search a username, fetch their public repos, show avatar, bio, follower count, top languages, and star counts.',
-        link: 'https://github-explorer-xi-tawny.vercel.app/', // ✏️ Replace with your GitHub / live link
+        link: 'https://github-explorer-xi-tawny.vercel.app/', 
       },
       {
         emoji: '🛒',
@@ -55,7 +55,7 @@ const DATA = {
         tags: ['Angular', 'SCSS', 'RESTful APIs','HTML', 'TypeScript'],
         title: 'E-commerce Platform (Shop-flow)',
         desc: 'Built a fully responsive e-commerce single-page application using Angular 17 and SCSS, integrating RESTful APIs for dynamic product data.',
-        link: 'https://shopflow-henna.vercel.app/products', // ✏️ Replace with your GitHub / live link
+        link: 'https://shopflow-henna.vercel.app/', 
       },
       {
         emoji: '📱',
